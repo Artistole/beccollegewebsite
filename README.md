@@ -9,7 +9,7 @@ The tech stack we have decided to use are the following:
 - React Router 6.5
 
 ### Back-end technologies:
-- Python
+- Node JS & MongoDB
 
 ### Why did we choose these technologies ? 
 
