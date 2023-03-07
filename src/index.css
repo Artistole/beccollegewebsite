@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.nav-link {
+    background: initial !important;
+    color: #000 !important;
+}
+
+.nav-tabs .active {
+    background: #0060b1 !important;
+    color: #fff !important;
+}
+
+.link-primary-col{
+    color: #0060b1 !important;
+}
