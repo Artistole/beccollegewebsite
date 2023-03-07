@@ -12,7 +12,7 @@
     padding: 10px;
     font-weight: 600;
   }
-  input{
+  .frominput{
     display: block;
     margin-bottom: 12px;
     width: 100%;
@@ -28,9 +28,6 @@
     border-radius: 3px;
     padding: 5px;
     color: white;
-  }
-  p {
-    color: red;
   }
   @media all and (max-width:320px) {
     input,select{

@@ -82,6 +82,7 @@ function Form() {
           </div>
           <div className="">
           <input
+              className="frominput"
               type="text"
               name="Name"
               placeholder="Name"
@@ -92,6 +93,7 @@ function Form() {
             />
             {/* <p>{formErrors.Name}</p> */}
           <input
+              className="frominput"
               type="text"
               name="RegdNo"
               placeholder="Regd No"
@@ -101,7 +103,8 @@ function Form() {
               required
             />
             {/* <p>{formErrors.RegdNo}</p> */}
-          <input
+          <input 
+              className="frominput"
               type="text"
               name="Branch"
               placeholder="Branch"
@@ -125,6 +128,7 @@ function Form() {
               onChange={handleChange}
             /> */}
           <input
+              className="frominput"
               type="text"
               name="email"
               placeholder="Email"
@@ -135,6 +139,7 @@ function Form() {
             />
             {/* <p>{formErrors.email}</p> */}
           <input
+              className="frominput"
               type="text"
               name="ContactNo"
               placeholder="Contact No"
