@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getLandingPageData } from "../config/services";
-import { Tab } from "@headlessui/react";
+//import { Tab } from "@headlessui/react";
 import principal from "/src/assets/homepage/principal.png";
 import TabsComponent from "../components/shared/Tabs";
 import { ListGroup } from "react-bootstrap";
@@ -81,7 +81,7 @@ export default function HomePage() {
 					</div>
 
 					<div className="flex flex-col justify-center items-center -mt-10">
-						<div className="w-full max-w-md px-2 py-16 sm:px-0 md:w-max md:max-w-2xl lg:max-w-4xl">
+						<div className="tabs-notices w-full max-w-md px-2 py-16 sm:px-0 md:w-max md:max-w-2xl lg:max-w-4xl">
 							{/* <Tab.Group>
 								<Tab.List className="flex space-x-1 bg-gray-900/20">
 									{c.latestNews.map((latestNews, index) => (
@@ -136,7 +136,9 @@ export default function HomePage() {
 														<p>{latestNews.description}</p>
 													</div>
 													<div className="my-auto text-nowrap">
-														{latestNews.date}
+														{/* {latestNews.date} */}
+														{new Date(latestNews.date).getDate()}-
+														{new Date(latestNews.date).getMonth()+1},{new Date(latestNews.date).getFullYear()}
 													</div>
 												</ListGroup.Item>
 											))}

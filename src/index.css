@@ -4,12 +4,12 @@
 
 
 
-.nav-link {
+.tabs-notices .nav-link {
     background: initial !important;
     color: #000 !important;
 }
 
-.nav-tabs .active {
+.tabs-notices .nav-tabs .active {
     background: #0060b1 !important;
     color: #fff !important;
 }
