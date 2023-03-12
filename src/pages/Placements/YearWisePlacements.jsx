@@ -1,24 +1,40 @@
 import '/src/pages/Placements/Placements.css'
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Chart from "react-apexcharts";
 import Donutchart from '/src/components/Charts/DonutChart.jsx'
 import Donutchart1 from '/src/components/Charts/DonutChart1.jsx'
+import { getPlacementData } from "/src/config/services.js";
+
 
 let YearWisePlacements=() =>{
-  const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClick] = useState(false);
 
-  const handleClick = () => {
-    setIsClick(true);
-  };
+  const [data, setData] = useState([])
 
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
+	const getData = () => {
+		getPlacementData().then(res =>
+			setData(res.data)
+		).catch(err =>
+			console.log('something went wrong', err)
+		)
+	}
 
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
+	useEffect(() => {
+		getData()
+	}, [])
+
+
+// const mongoose = require('mongoose');
+// main().catch(err => console.log(err));
+// async function main() {
+//   await mongoose.connect('mongodb+srv://becwebsitebe:bec_2023@beccluster.0ejssk6.mongodb.net/becDB');
+//   }
+// const Placements = mongoose.model('PlacementsDataModel', placementDataSchema);
+
+// Placements.findOne({ 'studid': 'Y19AIT510' }, function (err, Placements) {
+//   if (err) return handleError(err);
+//   console.log('This is studid %s.', Placements.studid);
+// });
+  
     return(
         <>
 <div className="nav dropdown items-start show w-full pt-4">
@@ -428,18 +444,36 @@ let YearWisePlacements=() =>{
       </div>
     </React.Fragment>
     {/* )} */}
+
+   {data.map(c =>
+    <>
+    {c.studentdata.map(x =>
+        <div>
+          <tbody>
+            <tr>
+              <td className='w-24 p-1'>{x.academicyear}</td>
+              <td className='w-24 p-1'>{x.studid}</td>
+              <td className='w-96 p-1'>{x.Nameofthestudent}</td>
+              <td className='w-24 p-1'>{x.deptid}</td>
+              <td className='w-96 p-1'>{x.company}</td>
+              <td className='w-24 p-1'>{x.salary}</td>
+            </tr>
+          </tbody>
+        </div>
+        
+  )}</>
+    )} 
     
     {/* {isClicking && ( */}
       <div className='donutchart flex p-1'>Placements 2022-2023  
       <div className='pl-72'>Max sal : 5.5LPA, avg sal : 3.5LPA, min sal : 2.5LPA</div>
-      {/* <a className='float-right' href="#">View Details</a> */}
       </div>
     <Donutchart />
     {/* )} */}
     
     {/* {isClicking && ( */}
-      <div className='donutchart p-1'>Placements 2022-2023
-      <a className='float-right' href="#">View Details</a>
+      <div className='donutchart flex p-1'>Placements 2022-2023
+      <div className='pl-72'>Max sal : 5.5LPA, avg sal : 3.5LPA, min sal : 2.5LPA</div>
       </div>
     <Donutchart1 />
     {/* )} */}

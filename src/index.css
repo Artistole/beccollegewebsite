@@ -9,6 +9,9 @@
     color: #000 !important;
 }
 
+.list-group{
+    border:4px solid #0060b1;
+}
 .tabs-notices .nav-tabs .active {
     background: #0060b1 !important;
     color: #fff !important;
@@ -17,3 +20,7 @@
 .link-primary-col{
     color: #0060b1 !important;
 }
+/* .nav-item{
+    background: #E2E8F0;
+    margin: 2px;
+} */

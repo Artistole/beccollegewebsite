@@ -137,23 +137,27 @@ export default function HomePage() {
 													</div>
 													<div className="my-auto text-nowrap">
 														{/* {latestNews.date} */}
-														{new Date(latestNews.date).getDate()}-
-														{new Date(latestNews.date).getMonth()+1},{new Date(latestNews.date).getFullYear()}
+														<div className="bg-primaryColor p-1 text-white text-center font-bold">{new Date(latestNews.date).getDate()}</div>
+														<div className="bg-secondaryColor p-1 text-black text-center">{new Date(latestNews.date).getMonth()+1}-{new Date(latestNews.date).getFullYear()}</div>
 													</div>
 												</ListGroup.Item>
 											))}
 									</ListGroup>
 								},
 								{
-									tabKey: "notices",
-									tabTitle: "Notices",
+									tabKey: "events",
+									tabTitle: "Events",
 									tabView: <ListGroup as="ul">
 									{
-										c.notices.map((notice, index) => (
-											<ListGroup.Item key={index} as="li" className="d-flex">
+										c.events.map((event, index) => (
+											<ListGroup.Item key={index} as="li" className="d-flex justify-between">
 												<div className="my-auto mr-2">
-													<a href={notice.link} className="link-primary-col">{notice.title}</a>
-													<p>{notice.description}</p>
+													<a href={event.link} className="link-primary-col">{event.title}</a>
+													<p>{event.description}</p>
+												</div>
+												<div className="my-auto text-nowrap">
+														<div className="bg-primaryColor p-1 text-white text-center font-bold">{new Date(event.date).getDate()}</div>
+														<div className="bg-secondaryColor p-1 text-black text-center">{new Date(event.date).getMonth()+1}-{new Date(event.date).getFullYear()}</div>
 												</div>
 											</ListGroup.Item>
 										))}
