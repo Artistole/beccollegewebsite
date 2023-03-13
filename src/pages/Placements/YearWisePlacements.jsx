@@ -7,12 +7,14 @@ import { getPlacementData } from "/src/config/services.js";
 
 
 let YearWisePlacements=() =>{
-
+  const [resultsPerPage, setResultsPerPage] = React.useState(3);
   const [data, setData] = useState([])
+  const newdata = []
 
 	const getData = () => {
 		getPlacementData().then(res =>
-			setData(res.data)
+			  //setData(res.data)
+      setData(res.data.flatMap(x => x.placementData))
 		).catch(err =>
 			console.log('something went wrong', err)
 		)
@@ -22,6 +24,27 @@ let YearWisePlacements=() =>{
 		getData()
 	}, [])
 
+
+  const getChartData = () =>{
+    let uniqueCount = data.map(x=>x.academicyear)
+    let duplicateCount = {};
+uniqueCount.forEach(e => duplicateCount[e] = duplicateCount[e] ? duplicateCount[e] + 1 : 1);
+let result = Object.keys(duplicateCount).map(e => 
+  {
+    return {year:e, count:duplicateCount[e]}
+  });
+  return result
+  }
+  const getPieChartData = () =>{
+    let uniqueCount = data.map(x =>x.company)
+    let duplicateCount = {};
+uniqueCount.forEach(e => duplicateCount[e] = duplicateCount[e] ? duplicateCount[e] + 1 : 1);
+let result = Object.keys(duplicateCount).map(e => 
+  {
+    return {company:e, count:duplicateCount[e],}
+  });
+  return result
+  }
 
 // const mongoose = require('mongoose');
 // main().catch(err => console.log(err));
@@ -379,7 +402,11 @@ let YearWisePlacements=() =>{
 	</div> */}
 </div>  
     {/* {isClicking && ( */}
+  
+    <>
+    
     <React.Fragment>
+      {console.log(getChartData())}
       <div className="BarChart container-fluid mb-5">
 
         <Chart
@@ -389,7 +416,7 @@ let YearWisePlacements=() =>{
           series={[
             {
               name: "Students Placed",
-              data: [200, 1103, 808, 443, 460, 411, 299, 255, 230, 200],
+              data: getChartData().map(y=>y.count),
             },
           ]}
           
@@ -401,18 +428,7 @@ let YearWisePlacements=() =>{
             },
             xaxis: {
               tickPlacement: "on",
-              categories: [
-                "2022-2023",
-                "2021-2022",
-                "2020-2021",
-                "2019-2020",
-                "2018-2019",
-                "2017-2018",
-                "2016-2017",
-                "2015-2016",
-                "2014-2015",
-                "2013-2014",
-              ],
+              categories: getChartData().map(y=>y.year),
             },
 
             yaxis: {
@@ -423,7 +439,7 @@ let YearWisePlacements=() =>{
                 style: { fontSize: "15", colors: ["black"] },
               },
               title: {
-                text: "No of Students Placed",
+                text: "No of Offers",
                 style: { color: "black", fontSize: 15 },
               },
             },
@@ -443,27 +459,21 @@ let YearWisePlacements=() =>{
         ></Chart>
       </div>
     </React.Fragment>
-    {/* )} */}
-
-   {data.map(c =>
-    <>
-    {c.studentdata.map(x =>
-        <div>
-          <tbody>
-            <tr>
-              <td className='w-24 p-1'>{x.academicyear}</td>
-              <td className='w-24 p-1'>{x.studid}</td>
-              <td className='w-96 p-1'>{x.Nameofthestudent}</td>
-              <td className='w-24 p-1'>{x.deptid}</td>
-              <td className='w-96 p-1'>{x.company}</td>
-              <td className='w-24 p-1'>{x.salary}</td>
-            </tr>
-          </tbody>
-        </div>
-        
-  )}</>
-    )} 
     
+  
+    </>
+    
+    
+    <div className='ml-[64rem]'>
+      <select value={resultsPerPage} onChange={(event) => setResultsPerPage(event.target.value)}>
+          <option value={3}>Last 3years</option>
+          <option value={4}>Last 4years</option>
+          <option value={5}>Last 5years</option>
+          <option value={7}>Last 7years</option>
+          <option value={10}>Show All</option>
+      </select>
+      <p>Results per page: {resultsPerPage}</p>
+    </div>
     {/* {isClicking && ( */}
       <div className='donutchart flex p-1'>Placements 2022-2023  
       <div className='pl-72'>Max sal : 5.5LPA, avg sal : 3.5LPA, min sal : 2.5LPA</div>
