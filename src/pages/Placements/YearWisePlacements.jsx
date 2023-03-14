@@ -415,7 +415,7 @@ let result = Object.keys(duplicateCount).map(e =>
           height={500}
           series={[
             {
-              name: "Students Placed",
+              name: "No of Offers",
               data: getChartData().map(y=>y.count),
             },
           ]}
@@ -472,7 +472,7 @@ let result = Object.keys(duplicateCount).map(e =>
           <option value={7}>Last 7years</option>
           <option value={10}>Show All</option>
       </select>
-      <p>Results per page: {resultsPerPage}</p>
+      {/* <p>Results per page: {resultsPerPage}</p> */}
     </div>
     {/* {isClicking && ( */}
       <div className='donutchart flex p-1'>Placements 2022-2023  
