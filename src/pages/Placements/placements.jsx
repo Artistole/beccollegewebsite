@@ -5,7 +5,6 @@ import Staff from "/src/components/staff/staff.jsx";
 import Slides from "/src/components/Carousel/Slides.jsx"
 import RegistrationForm from "/src/components/RegistrationForms/Form.jsx"
 import "/src/components/RegistrationForms/Form.css"
-// import Sidebar from "/src/components/Sidebar.jsx"
 
 const PlacementsStaff = Placementsteam.map((dataArg) => {
 	return <Staff key={dataArg.staffId} item={dataArg} />;
@@ -15,7 +14,6 @@ let Placements=() =>{
     return(
 		<>
 	<Slides />
-	{/* <Sidebar /> */}
 <div className="row w-full pt-3">
 <div className="col-3">
 	<div className="nav flex-column nav-pills placementmenuitems" id="tab" role="tablist" aria-orientation="vertical">
@@ -24,7 +22,6 @@ let Placements=() =>{
       	<a className="nav-link" id="trainingandplacementsteam-tab" data-toggle="pill" href="#trainingandplacementsteam" role="tab" aria-controls="trainingandplacementsteam" aria-selected="false">Training and Placements Team</a>
       	<a className="nav-link" id="notifications-tab" data-toggle="pill" href="#notifications" role="tab" aria-controls="notifications" aria-selected="false">Notifications</a>
       	<a className="nav-link" id="trainingregistration-tab" data-toggle="pill" href="#trainingregistration" role="tab" aria-controls="trainingregistration" aria-selected="false">Training Registration</a>
-		{/* <a className="nav-link" id="placementgallery-tab" data-toggle="pill" href="#placementgallery" role="tab" aria-controls="placementgallery" aria-selected="false">Placement Gallery</a> */}
 		<Link className="nav-link" to={"/YearWise-Placements"} >YearWise Placements</Link>
 		<Link className="nav-link" to={"/BranchWise-Placements"} >BranchWise Placements</Link>
 	</div>
@@ -81,10 +78,6 @@ let Placements=() =>{
 				<div className='line w-14 h-1 md:ml-28 xl:ml-0' style={{background:"#0060b1"}}></div>
 				<div className='flex max-h-96 md:ml-28 xl:ml-0'><RegistrationForm /></div> 
 			</div>
-			{/* <div className="tab-pane fade" id="placementgallery" role="tabpanel" aria-labelledby="placementgallery-tab">
-			<div className='PlacementGallery pb-1'>placement Gallery</div>
-				<div className='line w-14 h-1' style={{background:"#0060b1"}}></div>
-			</div> */}
 			<div className="tab-pane fade" id="yearWiseplacements" role="tabpanel" aria-labelledby="yearWiseplacements-tab">
 				This page can be used to yearWiseplacements
 			</div>
