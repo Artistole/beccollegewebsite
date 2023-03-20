@@ -51,7 +51,7 @@ const UploadStaffImage = () => {
         <div>
             <form>
                 <label htmlFor="staff-img">Upload</label>
-                <input value={file} name="file" type={"file"} id="staff-img" onChange={(e) => setFile(e.target.files[0])} />
+                <input name="file" type={"file"} id="staff-img" onChange={(e) => setFile(e.target.files[0])} />
                 <input placeholder='staff id' value={staffId} type="text" name="staffId" onChange={(e) => setStaffId(e.target.value)} />
                 <Button variant="primary" className='text-info' onClick={onSubmit}>Submit</Button>
             </form>
