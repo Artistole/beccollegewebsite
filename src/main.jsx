@@ -16,6 +16,7 @@ import ExamResults from "/src/pages/examsResults/examResults.jsx";
 import Placements from "/src/pages/Placements/placements.jsx";
 import YearWisePlacements from "/src/pages/Placements/YearWisePlacements";
 import BranchWisePlacements from "/src/pages/Placements/BranchWisePlacements";
+import UploadStaffImage from "./pages/UploadStaffImage";
 
 const router = createBrowserRouter([
 	{
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
 				path: "/departments/IT",
 				element: <It />,
 			},
+			{
+				path: "/upload/staffimage",
+				element: <UploadStaffImage />,
+			}
 		],
 	},
 ]);

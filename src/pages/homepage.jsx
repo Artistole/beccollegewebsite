@@ -10,6 +10,8 @@ import { ListGroup } from "react-bootstrap";
 export default function HomePage() {
 	const [data, setData] = useState([])
 
+	const [image, setImage] = useState()
+
 	const getData = () => {
 		getLandingPageData().then(res =>
 			setData(res.data)
@@ -138,7 +140,7 @@ export default function HomePage() {
 													<div className="my-auto text-nowrap">
 														{/* {latestNews.date} */}
 														<div className="bg-primaryColor p-1 text-white text-center font-bold">{new Date(latestNews.date).getDate()}</div>
-														<div className="bg-secondaryColor p-1 text-black text-center">{new Date(latestNews.date).getMonth()+1}-{new Date(latestNews.date).getFullYear()}</div>
+														<div className="bg-secondaryColor p-1 text-black text-center">{new Date(latestNews.date).getMonth() + 1}-{new Date(latestNews.date).getFullYear()}</div>
 													</div>
 												</ListGroup.Item>
 											))}
@@ -148,20 +150,20 @@ export default function HomePage() {
 									tabKey: "events",
 									tabTitle: "Events",
 									tabView: <ListGroup as="ul">
-									{
-										c.events.map((event, index) => (
-											<ListGroup.Item key={index} as="li" className="d-flex justify-between">
-												<div className="my-auto mr-2">
-													<a href={event.link} className="link-primary-col">{event.title}</a>
-													<p>{event.description}</p>
-												</div>
-												<div className="my-auto text-nowrap">
+										{
+											c.events.map((event, index) => (
+												<ListGroup.Item key={index} as="li" className="d-flex justify-between">
+													<div className="my-auto mr-2">
+														<a href={event.link} className="link-primary-col">{event.title}</a>
+														<p>{event.description}</p>
+													</div>
+													<div className="my-auto text-nowrap">
 														<div className="bg-primaryColor p-1 text-white text-center font-bold">{new Date(event.date).getDate()}</div>
-														<div className="bg-secondaryColor p-1 text-black text-center">{new Date(event.date).getMonth()+1}-{new Date(event.date).getFullYear()}</div>
-												</div>
-											</ListGroup.Item>
-										))}
-								</ListGroup>
+														<div className="bg-secondaryColor p-1 text-black text-center">{new Date(event.date).getMonth() + 1}-{new Date(event.date).getFullYear()}</div>
+													</div>
+												</ListGroup.Item>
+											))}
+									</ListGroup>
 								}]}
 							/>
 						</div>
