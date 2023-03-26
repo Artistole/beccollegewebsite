@@ -6,10 +6,38 @@ import iqac from "/src/assets/images.jpg";
 import naac from "/src/assets/naac.png";
 import aicte from "/src/assets/aicte.png";
 import { Link } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+import { getDeptFromUrl } from "../../routes/helpers";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
+
 let Header = () => {
+	const [deptName, setDeptName] = useState("default")
+	const [deptRoute, setDeptRoute] = useState("")
+
+	const getDeptName = (val) => {
+		switch (val) {
+			case "IT":
+				setDeptName("Information Technology")
+				setDeptRoute(val)
+				break;
+			case "Mech":
+				setDeptName("Mechanical")
+				setDeptRoute(val)
+				break;
+			default:
+				setDeptName("default")
+				setDeptRoute("")
+		}
+	}
+
+	useEffect(() => {
+		getDeptName(getDeptFromUrl())
+	}, [getDeptFromUrl()])
+
 	return (
 		<div className="flex flex-col">
 			<header className="general-header flex flex-wrap justify-center items-center md:mt-5 md:justify-around">
@@ -38,6 +66,36 @@ let Header = () => {
 						</div>
 					</div>
 				</div>
+
+				{deptName === "default" ? <div className="flex mr-10">
+					<img
+						className="md:w-36 md:h-36 md:pr-5 md:block hidden cursor-pointer "
+						src={nirf}
+					></img>
+					<img
+						className=" h-36 w-56 pr-5 md:block hidden cursor-pointer\ "
+						src={iqac}
+					></img>
+					<img
+						className="h-36 w-48 pr-5 md:block hidden cursor-pointer"
+						src={naac}
+					></img>
+					<img
+						className="w-36 h-36 pr-5 md:block hidden cursor-pointer"
+						src={aicte}
+					></img>
+				</div> : <div className="flex mx-auto"><h1 className="text-5xl font-extrabold">{deptName}</h1></div>}
+				{/* <img
+					className="college-logo hidden md:block md:h-20 md:-mt-4 md:mr-4 xl:h-32 xl:mr-4 xl:mt-2"
+					src={no1}
+				></img> */}
+			</header>
+			<nav className="w-full h-10 -mt-2 flex ">
+				{/* <nav className="bg-primaryColor w-full h-10 -mt-2 flex items-center"> */}
+				<Navbar deptName={deptName} deptRoute={deptRoute} />
+			</nav>
+		</>
+
 				<div className="flex gap-4 col-span-2 place-content-center">
 					<Link
 						to={"/nirf"}
@@ -68,6 +126,7 @@ let Header = () => {
 
 			<Navbar />
 		</div>
+
 	);
 };
 
