@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getDepartmentsData } from "/src/config/services.js";
 import Staff from "/src/components/staff/staff.jsx";
+import { getStaffImage } from "../../config/services";
 
 let staff = () => {
   const [data, setData] = useState([]);
@@ -17,13 +18,46 @@ let staff = () => {
   const StaffD = data.map((dataArg) => {
     return <Staff item={dataArg} />;
   });
+  const [imagedata, setimageData] = useState([{
+    id: "",
+    staffId: "",
+    file: "",
+    fileName: ""
+}])
+
+
+const arrayBufferToBase64 = buffer => {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+};
+
+
+useEffect(() => {
+    getStaffImage().then((res) => {
+        setimageData(res.data)
+    })
+}, [])
+
+const getImgsrc = (id) => {
+  if(!!imagedata.length){
+  let imgS = imagedata.filter(y => y.staffId == id).map(z => z.file)
+  return `data:image/png;base64,${arrayBufferToBase64(imgS[0]?.data)}`}
+}
   return (
     <>
       {data.map((c) => (
         <>
-          <div className="mt-10 flex flex-row justify-evenly">
+          <div className="mt-10 flex  justify-evenly flex-wrap ">
             {c.staffdata.map((x) => (
               <div className="staff-wrapper flex">
+                <div className="staff-pic ml-2">
+				        <img className="h-36" src={getImgsrc(x.staffid)} alt="staff picture"></img>
+			          </div>
                 <div className="staff-text flex flex-col ml-2 justify-around">
                   <div className="staff-name font-bold">{x.name}</div>
                   <div className="staff-designation">{x.designation}</div>
